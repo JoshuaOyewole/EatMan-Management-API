@@ -4,8 +4,7 @@ const mongoose = require( "mongoose");
  const dbConnect = async () => {
 
   try {
- //CHECKOUT WHY process.env.MONGO_URL keep generating errors
-    await mongoose.connect("mongodb://localhost:27017/eatery");
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("Connected to Eatery mongoDB.");
   } catch (error) {
     throw error;
