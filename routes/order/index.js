@@ -4,10 +4,10 @@ const { verifyStaff } = require("../../util/verifyToken");
 const router = express.Router();
 
 //GET LIST OF ALL ORDER
-router.get('/', verifyStaff, getOrders)
+router.get('/', getOrders)
 
 //GET A SPECIFIC ORDER
-router.get('/:id', verifyStaff,getOrder)
+router.get('/:id', getOrder)
 
  //UPDATE A ORDER
 router.patch('/:id', updateOrder)

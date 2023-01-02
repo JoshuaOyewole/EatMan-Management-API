@@ -1,25 +1,63 @@
-const Record= require("../models/salesRecord.js") ;
-//const createError = require("../util/error");
+const Transaction = require('../models/transaction');
 
-//GET ALL RECORDS
-const getRecords= async (req,res)=>{
-    try{
-      const records= await Record.find({});
-      res.status(200).json(records);
+
+const getTransactionByDate = async (req, res) => {
+
+  try {
+    //get dates from req.query by es6 object destructuring
+
+    let { startDate, endDate } = req.body;
+
+    //1. check that date is not empty
+    if (startDate === '' || endDate === '') {
+      return res.status(400).json({
+        status: 'failure',
+        message: 'Please ensure you pick two dates'
+      })
     }
-     catch(err){ 
-        next(err);
+
+    //2. check that date is in the right format
+    //expected result: YYY-MMM-DDD
+    console.log({ startDate, endDate });
+
+
+    //In some cases you'll get a date-time format where you have to separate the date
+    //from the time.
+
+
+    //3. Query database using Mongoose
+    //Mind the curly braces
+    const transactions = Transaction.find({
+      payment_date: {
+        $gte: new Date(new Date(startDate).setHours(01, 00, 00)),
+        $lt: new Date(new Date(endDate).setHours(24, 59, 59))
+      }
+    }).sort({ payment_date: 'asc' });
+
+    console.log(transactions);
+
+    //4. Handle responses
+    if (!transactions) {
+      return res.status(404).json({
+        status: 'failure',
+        message: 'Could not retrieve transactions'
+      })
     }
-  }
-//GET A SINGLE RECORDS
-  const getRecord = async (req,res)=>{
-    try{
-      const record = await Record.find({date:req.body});
-      res.status(200).json(record);
-    }
-     catch(err){ 
-        next(err);
-    }
+
+
+    res.status(200).json({
+      status: 'success',
+      /* data: transactions */
+    })
   }
 
-   module.exports = { getRecord, getRecords};
+  catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: 'failure',
+      error: error.message
+    })
+  }//Catch Ends here
+}
+
+module.exports = { getTransactionByDate};

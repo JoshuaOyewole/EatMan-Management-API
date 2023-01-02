@@ -1,4 +1,4 @@
-const Order = require("../models/Order.js") ;
+const Order = require("../models/transaction") ;
 const createError = require("../util/error");
 
 //QUERY ORDER
@@ -26,12 +26,14 @@ const getOrder = async (req,res,next)=>{
   const addOrder =  async (req,res,next)=>{
     
     try{
-      if(!req.body.name && !req.body.totalPrice) {
-        return next(createError(401, "Please Kindly fill the required Data!"));
+      if(!req.body.orders && !req.body.totalPrice) {
+        return next(createError(401, "Please kindly make an Order!"));
       } 
 
       const order = await Order.create(req.body);
-      res.status(200).json(order);
+      const {_id} = order;
+   
+      res.status(200).json({"message":"Order Successfull", id:_id});
     }
      catch(err){ 
         next(err);

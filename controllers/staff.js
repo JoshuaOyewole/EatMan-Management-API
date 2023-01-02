@@ -21,12 +21,12 @@ const getStaff = async (req,res,next)=>{
 
 //GET ALL StaffS
 const getAllStaffs = async (req,res,next)=>{
-  console.log(req)
+  
     try {
       const staffs = await Staff.find({});
 
       if(!staffs) return next(createError(404, "No Staff Available!"))
-      const refinedData = newStaff.map(Staff=>{
+      const refinedData = staffs.map(Staff=>{
         const { password, isAdmin, ...otherDetails } = Staff._doc;
         return {...otherDetails};
       })

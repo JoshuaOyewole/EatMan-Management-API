@@ -16,18 +16,20 @@ const register = async (req, res, next) => {
 
     if(staffEmail) return next(createError(401, "Email already Exist!"));
 
-    const UserPhone = await User.findOne({ phone: req.body.phone });
+    const staffPhone = await Staff.findOne({ phone: req.body.phone });
 
-    if(UserPhone) return next(createError(401, "Phone No. already Exist!"));
+    if(staffPhone) return next(createError(401, "Phone No. already Exist!"));
     
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
-   
+
     const newStaff = ({
       ...req.body,
       password: hash,
     });
+
+    //console.log(newStaff); Comment here
 
     const staff = await Staff.create(newStaff);
     res.status(200).json({
@@ -38,9 +40,9 @@ const register = async (req, res, next) => {
   } catch (err) {
     if (err.keyValue?.phone) return next(createError(401, `Phone Number: 0${err.keyValue.phone} already Exist!`))
 
-    if (err.keyValue?.email) return next(createError(401, `Email already Exist!`))
+    if (err.keyValue?.email) return next(createError(401, `Email already Exist!`));
 
-    next(createError(400, `An Error occured! Try Again`));
+     next(createError(400, `An Error occured! Try Again`));
   }
 };
 
@@ -69,15 +71,16 @@ const login = async (req, res, next) => {
       isAdmin: isAdmin,
       id: staff._id
     }
-
+    
     const token = jwt.sign(jwt_payload, process.env.JWT_SECRET);
-
-    res
+    return res
       .cookie("access_token", token, {
+        path:"/",
+        sameSite:"none",
         httpOnly: true,
         expires: new Date(Date.now() + (1000*60*60*12)),//it will last for 12hrs. Try and refresh the Token after 12hrs again--> 10/08/22(12:46pm)
         maxAge: 1000 *60 * 60 *12,
-        secure: true //Set to TRUE when pushing to production
+        //secure: true Set to TRUE when pushing to production
       })
       .status(200)
       .json({
