@@ -12,4 +12,13 @@ ADMIN FEATURES
 1. Order Summary: This endpoint provides all the information about Meals Orders, Total Sales for the Day, Top selling Meals/Products and So much more.
 2. Manage Orders: Admin can edit or delete orders due to errors from staffs.
 
-FUTURE
+ENDPOINTS
+
+login
+/login
+
+Payload
+Email and password
+
+register
+/register
