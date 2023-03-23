@@ -2,7 +2,7 @@ const Order = require("../models/transaction") ;
 const createError = require("../util/error");
 
 //QUERY ORDER
-const getOrder = async (req,res,next)=>{
+const order = async (req,res,next)=>{
     try{
       const order = await Order.findById(req.params.id);
       res.status(200).json(order);
@@ -12,7 +12,7 @@ const getOrder = async (req,res,next)=>{
     }
   }
 //QUERY ALL ORDERS
-  const getOrders = async (req,res,next)=>{
+  const orders = async (req,res,next)=>{
     try{
       const orders = await Order.find({});
       res.status(200).json(orders);
@@ -23,7 +23,7 @@ const getOrder = async (req,res,next)=>{
   }
 
   //MAKE AN ORDER
-  const addOrder =  async (req,res,next)=>{
+  const newOrder =  async (req,res,next)=>{
     
     try{
       if(!req.body.orders && !req.body.totalPrice) {
@@ -76,4 +76,4 @@ const getOrder = async (req,res,next)=>{
     }
    }
 
-   module.exports = { getOrder, getOrders, addOrder, updateOrder, deleteOrder};
+   module.exports = { order, orders, newOrder, updateOrder, deleteOrder};

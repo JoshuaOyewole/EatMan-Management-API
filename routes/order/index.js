@@ -1,13 +1,13 @@
 const express = require("express");
-const { addOrder,getOrders,getOrder,updateOrder,deleteOrder } = require("../../controllers/order");
+const { order, orders, newOrder, updateOrder, deleteOrder } = require("../../controllers/order");
 const { verifyStaff } = require("../../util/verifyToken");
 const router = express.Router();
 
 //GET LIST OF ALL ORDER
-router.get('/', getOrders)
+router.get('/', orders)
 
 //GET A SPECIFIC ORDER
-router.get('/:id', getOrder)
+router.get('/:id', order)
 
  //UPDATE A ORDER
 router.patch('/:id', updateOrder)
@@ -16,7 +16,7 @@ router.patch('/:id', updateOrder)
 router.delete('/:id', deleteOrder)
 
 //CREATE A ORDER
-router.post('/', addOrder)
+router.post('/', newOrder)
 
 
 module.exports = router;

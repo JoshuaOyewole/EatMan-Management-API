@@ -40,7 +40,7 @@ app.use("/api/staff", staffRoute);
 
 //ERROR HANDLING MIDDLEWARE
 app.use((err, req, res, next) => {
-  const errorCode = err.status || 500;
+  const errorCode = err.status || 5000;
   const errorMessage = err.message || "Error Occured!";
   return res.status(errorCode).json({
     success: false,
