@@ -17,7 +17,6 @@ const staffRoute= require("./routes/staff/index");
 
 const PORT = 3100 || process.env.PORT ; 
 
-
 //DB INITIALIZATION
 dbConnect();
 
@@ -27,7 +26,6 @@ app.use(cookieParser())
 app.use(express.json());
 
 //ROUTES
-
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/logout", logoutRoute);
@@ -35,8 +33,6 @@ app.use("/api/meal", mealRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/records", recordRoute);
 app.use("/api/staff", staffRoute); 
-
-
 
 //ERROR HANDLING MIDDLEWARE
 app.use((err, req, res, next) => {

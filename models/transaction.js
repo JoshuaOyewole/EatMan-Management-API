@@ -15,16 +15,16 @@ const transactionSchema = new mongoose.Schema({
         required: true,
     },
     payment_date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true,
     },
     payment_status: {
         type: String,
         enum: {
-            values: ['pending', 'fulfilled', 'declined'],
+            values: ['Pending', 'Successful', 'Declined'],
             message: '{VALUE} is not supported'
         },
-        default: "pending"
+        default: "Successful"
     },
     payment_medium: {
         type: String,
