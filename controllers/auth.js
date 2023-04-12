@@ -73,7 +73,7 @@ const login = async (req, res, next) => {
     }
     
     const token = jwt.sign(jwt_payload, process.env.JWT_SECRET);
-    return res
+    /* return res
       .cookie("access_token", token, {
         path:"/",
         sameSite:"none",
@@ -90,7 +90,16 @@ const login = async (req, res, next) => {
         "details": {
           _id, isAdmin, firstname, lastname
         }
-      });
+      }); */
+      return res.status(200).json({
+        "success": true,
+        "status": 200,
+        "message": `Logged in successfully!`,
+        "details": {
+          _id, isAdmin, firstname, lastname
+        },
+        token:token
+      })
   }
   catch (err) {
     next(err);
