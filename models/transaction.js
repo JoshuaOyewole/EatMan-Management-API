@@ -29,7 +29,7 @@ const transactionSchema = new mongoose.Schema({
     payment_medium: {
         type: String,
         enum: {
-            values: ['Cash', 'POS', 'Online Payment'],
+            values: ['Cash', 'POS', 'Online Payment', 'Transfer'],
             message: '{VALUE} is not supported'
         },
         default: "Cash"
