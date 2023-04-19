@@ -34,16 +34,15 @@ const staffSchema = new mongoose.Schema({
         maxLength:50,
 	enum: {values:['Male', 'Female'], message:  '{VALUE} is not supported'}
     },
-    address:{
-        type:String,
-        maxLength:200,
-    },
+   
     isAdmin:{
         type:Boolean,
         default: false
     },
     homeAddress:{
         type:String,
+        maxLength:200,
+        required:true
     },
     dob:{
         type:Date,
