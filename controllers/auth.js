@@ -34,7 +34,6 @@ const register = async (req, res, next) => {
     const staff = await Staff.create(newStaff);
     res.status(200).json({
       "success": true,
-      "status": 200,
       "message": `${staff?.firstname} ${staff?.lastname} registered successfully!`
     });
   } catch (err) {
