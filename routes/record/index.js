@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const {
-    eod
+    eod,
+    last7days
 } = require("../../controllers/salesRecord");
+const { verifyStaff } = require('../../middleware/verifyToken');
 
 /* EOD */
-router.get('/', eod)
+router.get('/', verifyStaff , eod);
+router.get('/last7days',verifyStaff, last7days);
 
-//GET A SPECIFIC Record
-
-//router.post('/date',  getTransactionByDate);
 
 module.exports = router;

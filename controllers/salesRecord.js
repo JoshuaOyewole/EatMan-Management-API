@@ -13,6 +13,20 @@ const eod = async (req, res, next) => {
   }
 };
 
+/* LAST 7 days Transactions */
+const last7days = async (req, res, next) => {
+
+  try {
+    const data = await Transaction.find({ timestamp: {
+      $gte: new Date(new Date() - 6 * 60 * 60 * 24 * 1000)
+  }});
+    res.status(200).json(data);
+  } catch (error) {
+    return next(createError(400, error.message));
+  }
+};
+
+
 /* const getTransactionByDate = async (req, res) => {
   try {
     //get dates from req.query by es6 object destructuring
@@ -65,4 +79,4 @@ const eod = async (req, res, next) => {
   } //Catch Ends here
 }; */
 
-module.exports = { eod };
+module.exports = { eod,last7days };

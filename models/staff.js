@@ -35,9 +35,10 @@ const staffSchema = new mongoose.Schema({
 	enum: {values:['Male', 'Female'], message:  '{VALUE} is not supported'}
     },
    
-    isAdmin:{
-        type:Boolean,
-        default: false
+    rank:{
+        type:String,
+        enum: {values:['admin', 'staff'], message:  '{VALUE} is not allowed'},
+        default:'staff'
     },
     homeAddress:{
         type:String,

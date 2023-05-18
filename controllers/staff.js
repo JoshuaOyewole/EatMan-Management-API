@@ -1,7 +1,6 @@
-const staff = require("../models/staff");
 const Staff = require("../models/staff");
 const createError = require("../util/error");
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 //GET A Staff
@@ -22,7 +21,7 @@ const getStaff = async (req, res, next) => {
 };
 
 //GET ALL StaffS
-const getAllStaffs = async (req, res, next) => {
+const getAllStaffs = async (req, res, next) => { 
   try {
     const staffs = await Staff.find({});
 

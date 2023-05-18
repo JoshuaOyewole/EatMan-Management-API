@@ -1,6 +1,6 @@
 const express = require("express");
 const { order, orders, newOrder, updateOrder, deleteOrder } = require("../../controllers/order");
-const { verifyStaff } = require("../../util/verifyToken");
+//const { verifyStaff } = require("../../util/verifyToken");
 const router = express.Router();
 
 //GET LIST OF ALL ORDER

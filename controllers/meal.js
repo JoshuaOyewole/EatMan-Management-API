@@ -3,6 +3,8 @@ const createError = require("../util/error");
 
 /* GET MEAL */
 const getMeal = async (req, res, next) => {
+  console.log('User data recieved from the req during Verification of Token is')
+  console.log(req.user)
   try {
     const get_meal = await Meal.findById(req.params.id);
     res.status(200).json(get_meal);
@@ -24,14 +26,15 @@ const getAllMeal = async (req, res, next) => {
 /* ADD MEAL TO DB*/
 const addMeal = async (req, res, next) => {
   try {
-    const checkMeal = await Meal.findOne({ name: req.body.name });
+    const checkMeal = await Meal.findOne({ title: req.body.title });
+
     if (checkMeal) return next(createError(409, "Meal already exist"));
     else if (req.body.price <= 40)
       return next(createError(400, "Invalid Price inputted"));
     const newMeal = await Meal.create(req.body);
     res.status(201).json({
       success: true,
-      message: `${newMeal.name} - successfully added`,
+      message: `${newMeal.title} - successfully added`,
     });
   } catch (err) {
     next(err);
