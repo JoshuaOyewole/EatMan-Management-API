@@ -18,7 +18,8 @@ router
   .get("/:id", verifyStaff, getStaff)
   .patch("/:id", verifyStaff, updateStaff)
   .delete("/:id", verifyAdmin, deleteStaff)
-  .get("/", verifyStaff, getAllStaffs)
-  .post("/", verifyAdmin, addStaff);
+  /* .get("/", verifyAdmin, getAllStaffs) */
+  .get("/", getAllStaffs)
+  .post("/", addStaff);
 
 module.exports = router;

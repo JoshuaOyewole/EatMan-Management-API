@@ -1,22 +1,22 @@
 const express = require("express");
 const { order, orders, newOrder, updateOrder, deleteOrder } = require("../../controllers/order");
-//const { verifyStaff } = require("../../util/verifyToken");
+const { verifyStaff, verifyAdmin, verifyUser } = require("../../middleware/verifyToken");
 const router = express.Router();
 
 //GET LIST OF ALL ORDER
-router.get('/', orders)
+router.get('/', verifyStaff,orders)
 
 //GET A SPECIFIC ORDER
-router.get('/:id', order)
+router.get('/:id',verifyStaff, order)
 
  //UPDATE A ORDER
-router.patch('/:id', updateOrder)
+router.patch('/:id', verifyAdmin,updateOrder)
 
  //DELETE A ORDER
-router.delete('/:id', deleteOrder)
+router.delete('/:id', verifyAdmin, deleteOrder)
 
 //CREATE A ORDER
-router.post('/', newOrder)
+router.post('/', verifyUser,newOrder)
 
 
 module.exports = router;

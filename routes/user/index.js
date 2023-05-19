@@ -3,7 +3,7 @@ const router = express.Router();
 const {
     getUser, getAllUsers, updateUser, deleteUser
 } = require("../../controllers/user");
-const { verifyAdmin, verifyToken, verifyUser } = require('../../middleware/verifyToken');
+const { verifyAdmin,verifyUser } = require('../../middleware/verifyToken');
 
 
 //GET A SPECIFIC User

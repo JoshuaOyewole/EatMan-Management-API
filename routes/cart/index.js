@@ -1,23 +1,23 @@
 const express = require ('express');
 const router = express.Router();
 const { addtoCart, deleteFromCart, getCartItmes, updateCart } = require("../../controllers/cart");
-const { verifyStaff, verifyAdmin, verifyToken } = require('../../middleware/verifyToken');
+const {verifyUser } = require('../../middleware/verifyToken');
 
 
 
-//GET ALL Meal
-router.get('/', verifyToken, getCartItmes)
+//GET ALL CART ITEMS
+router.get('/', verifyUser, getCartItmes)
 
 
-//ADD A Meal
-router.post('/', verifyToken,addtoCart)
+//ADD A MEAL TO CART
+router.post('/', verifyUser,addtoCart)
 
 
-//UPDATE Meal
-router.patch('/:id', verifyToken,updateCart)
+//UPDATE CART
+router.patch('/:id', verifyUser,updateCart)
   
 
- //DELETE AN Meal
- router.delete('/:id',verifyToken, deleteFromCart)
+ //DELETE A MEAL FROM CART
+ router.delete('/:id',verifyUser, deleteFromCart)
 
  module.exports = router;
