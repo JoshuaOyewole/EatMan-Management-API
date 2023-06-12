@@ -5,7 +5,6 @@ const verifyToken = (req, res, next) => {
   //get the token from the req
 
   const token = req.cookies;
-  console.log(`Cookies is: ${token}`);
   //check if the user even have a token. If not throw an error
   if (!token)
     return next(createError(401, "Access denied, No Authorization code"));
@@ -25,7 +24,6 @@ const verifyToken = (req, res, next) => {
 
 const verifyStaff = (req, res, next) => {
   const token = req.cookies;
-  console.log(`Cookies is: ${token}`);
   verifyToken(req, res, next, () => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next();
@@ -37,7 +35,7 @@ const verifyStaff = (req, res, next) => {
 
 const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, next, () => {
-    console.log(req.user.isAdmin);
+
     if (req.user.isAdmin) {
       next();
     } else {

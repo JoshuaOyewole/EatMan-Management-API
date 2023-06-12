@@ -42,7 +42,6 @@ const addStaff = async (req, res, next) => {
     const checkStaffEmail = await Staff.find({
       $or: [{ email: req.body.email }, { phone: req.body.phone }],
     });
-    console.log(checkStaffEmail);
     if (req.body.firstname === req.body.lastname)
       return next(
         createError(401, "Firstname and Lastname should be different")

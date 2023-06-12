@@ -3,8 +3,6 @@ const createError = require("../util/error");
 
 /* GET MEAL */
 const getMeal = async (req, res, next) => {
-  console.log('User data recieved from the req during Verification of Token is')
-  console.log(req.user)
   try {
     const get_meal = await Meal.findById(req.params.id);
     res.status(200).json(get_meal);
