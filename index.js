@@ -30,7 +30,12 @@ const PORT = 3100 || process.env.PORT ;
 dbConnect();
 
 //Middlewares
-app.use(cors())
+const corsoption = {
+    origin:'http://localhost:5173',
+    credentials:true,
+    optionSuccessStatus:200
+}
+app.use(cors(corsoption))
 app.use(cookieParser())
 app.use(express.json());
 
