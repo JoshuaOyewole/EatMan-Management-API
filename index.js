@@ -31,7 +31,7 @@ dbConnect();
 
 //Middlewares
 const corsoption = {
-    origin:'http://localhost:5173',
+    origin:'https://eatman.netlify.app',
     credentials:true,
     optionSuccessStatus:200
 }
