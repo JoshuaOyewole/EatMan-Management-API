@@ -22,6 +22,6 @@ router.patch("/:id",verifyStaff, updateCategory);
 router.delete("/:id", verifyAdmin,deleteCategory);
 
 //CREATE A Category
-router.post("/", verifyAdmin, addCategory);
+router.post("/", addCategory);
 
 module.exports = router;
