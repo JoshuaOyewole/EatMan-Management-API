@@ -40,6 +40,7 @@ app.use(express.json());
 
 //ROUTES
 app.use("/api/login", loginRoute);
+
 app.use("/api/register", registerRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/meal", mealRoute);
