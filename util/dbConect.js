@@ -1,8 +1,7 @@
-const mongoose = require( "mongoose");
+const mongoose = require("mongoose");
 
-
- const dbConnect = async () => {
-
+const dbConnect = async () => {
+ 
   try {
     await mongoose.connect(process.env.MONGO_URL);
     console.log("Connected to Eatery mongoDB.");
@@ -14,7 +13,5 @@ const mongoose = require( "mongoose");
     console.log(err);
   });
 };
-
-
 
 module.exports = dbConnect;
