@@ -66,7 +66,7 @@ const totalSale = async (req, res, next) => {
       totalForMonth,
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    next(err);
   }
 };
 
@@ -93,7 +93,7 @@ const topSellingProducts = async (req, res, next) => {
 
     res.json(top_selling_products);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    next(err);
   }
 };
 
