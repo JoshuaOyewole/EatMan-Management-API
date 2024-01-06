@@ -4,7 +4,7 @@
   "description": "API for Eatery",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "Joshua Oyewole",
   "license": "ISC",
@@ -15,9 +15,11 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.30.1",
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.1",
     "mongoose-date-format": "^1.2.0",
+    "nodemailer": "^6.9.8",
     "nodemon": "^3.0.1"
   },
   "devDependencies": {}
