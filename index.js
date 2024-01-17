@@ -16,7 +16,7 @@ const loginRoute = require("./routes/auth/login");
 const logoutRoute = require("./routes/auth/logout");
 const registerRoute = require("./routes/auth/register");
 const OTPRoute = require("./routes/otp/index");
-const forgetPWD = require  ("./routes/auth/reset_pwd/forgot_pwd");
+const forgetPWD = require("./routes/auth/reset_pwd/forgot_pwd");
 const resetPWD = require("./routes/auth/reset_pwd/reset_pwd");
 const recordRoute = require("./routes/record/index");
 const dashboardSummaryRoute = require("./routes/dashboardsummary/index");
@@ -34,7 +34,11 @@ dbConnect();
 
 //Middlewares
 const corsoption = {
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://eatman.netlify.app",
+  ],
   credentials: true,
   optionSuccessStatus: 200,
 };
