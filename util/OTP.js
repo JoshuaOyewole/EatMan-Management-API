@@ -33,7 +33,7 @@ const sendOTP = async (otpDetails) => {
 
     //Send Email
     const mailOptions = {
-      from: AUTH_EMAIL,
+      from: `EatMan Software ${AUTH_EMAIL}`,
       to: email,
       subject,
       html: `<p> ${message} </p><p style="color:tomato; font-size:25px; letter-sapcing:2px;"><b>${generatedOTP}</b></p><p> This code <b>expires in ${duration} hour(s)</b>.</p>`,

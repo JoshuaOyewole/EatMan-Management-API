@@ -10,7 +10,7 @@ const {
 } = require("../../controllers/dashboardSummary");
 
 //GET ALL Meal
-router.get("/", verifyStaff, totalSale);
+router.post("/", verifyStaff, totalSale);
 router.get("/top-selling", verifyStaff, topSellingProducts);
 router.get("/getTotalOrdersLast7Days", verifyStaff, getTotalOrdersLast7Days);
 router.get("/lastTransactions", verifyStaff, getLastTransactions);

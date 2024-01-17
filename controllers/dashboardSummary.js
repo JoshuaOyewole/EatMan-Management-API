@@ -1,11 +1,14 @@
+const { default: mongoose } = require("mongoose");
 const Transaction = require("../models/transaction");
 const moment = require("moment");
 
 // Function to get transaction summary for a date range
-async function getTransactionSummary(startDate, endDate) {
+async function getTransactionSummary(userId, startDate, endDate) {
+
   const totalSum = await Transaction.aggregate([
     {
       $match: {
+        user: mongoose.Types.ObjectId(userId),
         createdAt: {
           $gte: startDate,
           $lt: endDate,
@@ -34,6 +37,7 @@ async function getTransactionSummary(startDate, endDate) {
 
 /* TOTAL SALES */
 const totalSale = async (req, res, next) => {
+  let userId = req.body.id;
   try {
     const currentDate = new Date();
     const startOfDay = new Date(
@@ -58,8 +62,8 @@ const totalSale = async (req, res, next) => {
     );
 
     const [totalForDay, totalForMonth] = await Promise.all([
-      getTransactionSummary(startOfDay, endOfDay),
-      getTransactionSummary(firstDayOfMonth, lastDayOfMonth),
+      getTransactionSummary(userId, startOfDay, endOfDay),
+      getTransactionSummary(userId, firstDayOfMonth, lastDayOfMonth),
     ]);
 
     res.json({

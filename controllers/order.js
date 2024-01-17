@@ -24,13 +24,13 @@ const order = async (req,res,next)=>{
 
   //MAKE AN ORDER
   const newOrder =  async (req,res,next)=>{
-    
+    const userId = req.body.userId; // Assuming userId is passed in the request body
     try{
       if(!req.body.orders && !req.body.totalPrice) {
         return next(createError(401, "Please kindly make an Order!"));
       } 
 
-      const order = await Order.create(req.body);
+      const order = await Order.create({...req.body, userId});
       const {_id} = order;
    
       res.status(200).json({"message":"Order Successfull", id:_id});
