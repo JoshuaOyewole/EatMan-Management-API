@@ -4,7 +4,6 @@ const moment = require("moment");
 
 // Function to get transaction summary for a date range
 async function getTransactionSummary(userId, startDate, endDate) {
-
   const totalSum = await Transaction.aggregate([
     {
       $match: {

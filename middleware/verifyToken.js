@@ -10,16 +10,15 @@ const verifyToken = (req, res, next) => {
     req.headers?.authorization?.startsWith("Bearer")
   ) {
     token = req.headers?.authorization?.split(" ")[1];
+
     //verify if a token is valid. If not valid throw an error
     jwt.verify(token, process.env.JWT_SECRET, (err, data) => {
-
       //if valid access the data in the token in a req variable
       if (!err) {
         req.user = data;
         return next();
       } else {
-        return createError(403, "Access denied, Incorrect Authorization Code"
-        );
+        return createError(403, "Access denied, Incorrect Authorization Code");
       }
     });
   } else {
@@ -38,8 +37,7 @@ const verifyUser = (req, res, next) => {
 };
 const verifyStaff = (req, res, next) => {
   verifyToken(req, res, () => {
-
-    if (req.user.id === req.params.id || req.user.rank === "staff" || "admin") {
+    if (req.user.rank === "staff" || "admin") {
       next();
     } else {
       return next(createError(403, "You are not authorized!"));

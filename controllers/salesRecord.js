@@ -9,7 +9,6 @@ const eod = async (req, res, next) => {
   // Split the date string into day, month, and year components
   const [day, month, year] = query.split("-");
 
-  console.log({ day, month, year, userId });
   // Convert the date components to a JavaScript Date object
   const desiredDate = new Date(`${year}-${month}-${day}`);
 
